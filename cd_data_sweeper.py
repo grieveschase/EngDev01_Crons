@@ -2,7 +2,7 @@
 #=============OverView================
 '''
 1. Check that SEMs and EngData directories are mounted.
-2.
+2. Copy new .rpt and .cst files over to network dirve.
 
 '''
 import os, subprocess, sys
