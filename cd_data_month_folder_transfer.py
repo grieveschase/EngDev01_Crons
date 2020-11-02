@@ -40,16 +40,10 @@ else:
 subprocess.call(['cp' ,'-a' ,'/mnt/eng_data/F4PHOTO/Opal_Data/this_month/.', '/mnt/eng_data/F4PHOTO/Opal_Data/last_month/'])
 
 #4. remove data from this_month dir
-src_number_files = len(os.listdir('/mnt/eng_data/F4PHOTO/Opal_Data/this_month/'))
-dest_number_files = len(os.listdir('/mnt/eng_data/F4PHOTO/Opal_Data/last_month/'))
-if src_number_files == dest_number_files:
-    try:
-        subprocess.call(['find', '/mnt/eng_data/F4PHOTO/Opal_Data/this_month/', '-type', 'f' ,'-exec', 'rm', '{}', ';'])
-    except:
-        write_error_log()
-else:
-    write_error_log("Error when copying contents from this_month to last_month, number of files do not match!")
-
+try:
+    subprocess.call(['find', '/mnt/eng_data/F4PHOTO/Opal_Data/this_month/', '-type', 'f' ,'-exec', 'rm', '{}', ';'])
+except:
+    write_error_log()
 
 
 
