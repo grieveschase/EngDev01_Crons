@@ -1,11 +1,13 @@
 #Move .rpt and .cst file data from sems to eng_data
 #=============OverView================
 '''
+Run by cron every 10 - 15 mins.
 1. Check that SEMs and EngData directories are mounted.
 2. Copy new .rpt and .cst files over to network dirve.
 
 '''
 import os, subprocess, sys
+from skywater_email import *
 
 #error log writing function.
 def write_error_log(input_string = None):
@@ -40,6 +42,10 @@ for mp in mount_points:
                 write_error_log(str(datetime.datetime.now()) + str(mp) + str(" mount point failed to mount.") )
         except:
             write_error_log()
+            subject = "CD Data Sweeper Error, Mount Points"
+            body ="Error with CD Data sweeper. Unable to Mount: %s" %mp
+            to_list = ['chase.grieves@skywatertechnology.com']
+            send_email(to_list,subject, body)
 
 for src in src_paths:
     try:

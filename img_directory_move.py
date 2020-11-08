@@ -20,13 +20,13 @@ import img_vars_config
 
 
 def write_error_log():
-    with open(os.path.split(__file__)[0] + "//error_log.txt","a") as o_file:
+    with open(os.path.split(__file__)[0] + "//img_directory_move_error_log.txt","a") as o_file:
         exc_type, exc_obj, exc_tb = sys.exc_info()
         fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
         o_file.write( str(datetime.datetime.now()) + "  :  " + str(exc_type) +"," + str(fname) +"," + str(sys.exc_info()[1])+ "," +"line: "+ str(exc_tb.tb_lineno) + "\n")
 
 def write_app_log(app_text):
-    with open(os.path.split(__file__)[0] + "//app_log.txt","a") as o_file:
+    with open(os.path.split(__file__)[0] + "//img_directory_move_log.txt","a") as o_file:
         o_file.write(str(datetime.datetime.now()) + " : " + app_text + "\n")
 
 

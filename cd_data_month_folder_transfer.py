@@ -8,6 +8,7 @@
 '''
 import os, subprocess, sys, datetime
 from datetime import timedelta
+from skywater_email import *
 
 def write_error_log(input_string = None):
     if not input_string:
@@ -25,7 +26,10 @@ try:
     subprocess.call(['tar' ,'-zcf', '/mnt/eng_data/F4PHOTO/Opal_Data/'+ this_month_directory + '.tar.gz', '/mnt/eng_data/F4PHOTO/Opal_Data/last_month'])
 except:
     write_error_log()
-
+    subject = "CD Data last_month to tar.gz troubles"
+    body ="Error with transfering last_month data to tar.gz file"
+    to_list = ['chase.grieves@skywatertechnology.com']
+    send_email(to_list,subject, body)
 #2. remove data in last_month file.
 new_tar_file_name = '/mnt/eng_data/F4PHOTO/Opal_Data/'+ this_month_directory + '.tar.gz'
 if os.path.exists(new_tar_file_name):
