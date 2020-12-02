@@ -24,6 +24,10 @@ def write_error_log(input_string = None):
 try:
     this_month_directory =( datetime.datetime.now() - timedelta(days=2)).strftime("%Y-%m")
     subprocess.call(['tar' ,'-zcf', '/mnt/eng_data/F4PHOTO/Opal_Data/'+ this_month_directory + '.tar.gz', '/mnt/eng_data/F4PHOTO/Opal_Data/last_month'])
+    subject = "CD Data last_month to %s.tar.gz successful" %this_month_directory
+    body ="Real G’s move in silence like lasagna. Lil Wayne"
+    to_list = ['chase.grieves@skywatertechnology.com']
+    send_email(to_list,subject, body)
 except:
     write_error_log()
     subject = "CD Data last_month to tar.gz troubles"
@@ -35,6 +39,10 @@ new_tar_file_name = '/mnt/eng_data/F4PHOTO/Opal_Data/'+ this_month_directory + '
 if os.path.exists(new_tar_file_name):
     try:
         subprocess.call(['find', '/mnt/eng_data/F4PHOTO/Opal_Data/last_month/', '-type', 'f' ,'-exec', 'rm', '{}', ';'])
+        subject = "last_month folder cleared"
+        body ="I never sleep, cause sleep is the cousin of death.Nas"
+        to_list = ['chase.grieves@skywatertechnology.com']
+        send_email(to_list,subject, body)
     except:
         write_error_log()
 else:
@@ -46,6 +54,10 @@ subprocess.call(['cp' ,'-a' ,'/mnt/eng_data/F4PHOTO/Opal_Data/this_month/.', '/m
 #4. remove data from this_month dir
 try:
     subprocess.call(['find', '/mnt/eng_data/F4PHOTO/Opal_Data/this_month/', '-type', 'f' ,'-exec', 'rm', '{}', ';'])
+    subject = "this_month to last_month, and cleared this_month"
+    body ="Cash rules everything around me. Wu-Tang Clan"
+    to_list = ['chase.grieves@skywatertechnology.com']
+    send_email(to_list,subject, body)
 except:
     write_error_log()
 
