@@ -33,6 +33,8 @@ src_paths = [
             '/home/ccag/Desktop/verity401/reports/Production/Production/Production/',
             ]
 
+sem_qual_data_path = "/mnt/eng_data/F4PHOTO/Opal_Data/SEM_QUAL_DATA/"
+
 
 for mp in mount_points:
     if not os.path.ismount(mp):
@@ -51,5 +53,8 @@ for src in src_paths:
     try:
         subprocess.call(['find',src,'-type','f','-name','*.rpt*','-mtime','-.01','-exec','cp','-p','{}',dest_path,';'])
         subprocess.call(['find',src,'-type','f','-name','*.cst*','-mtime','-.01','-exec','cp','-p','{}',dest_path,';'])
+	subprocess.call(['find',src,'-type','f','-name','*5x5x5_50_VERA.cst*','-mtime','-.01','-exec','cp','-p','{}',sem_qual_data_path,';'])
     except:
         write_error_log()
+
+
